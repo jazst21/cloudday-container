@@ -6,7 +6,7 @@ copilot svc deploy --name svc-api-markdown --env staging
 copilot svc show --name svc-api-markdown
 -----
 #copilot pipeline init --name module2 --url https://github.com/jazst21/cloudday-container.git --git-branch main --environments staging,production --pipeline-type Workloads
-copilot pipeline init --name module2 --url https://github.com/jazst21/cloudday-container.git --git-branch main --environments staging --pipeline-type Workloads
+copilot pipeline init --name cloudday --url https://github.com/jazst21/cloudday-container.git --git-branch main --environments staging --pipeline-type Workloads
 git add copilot/
 git commit -m "Add copilot files"
 git push -u origin main
@@ -14,10 +14,11 @@ copilot pipeline deploy
 cat "Hello pipeline!" > test-pipeline
 copilot pipeline status
 -----
-copilot pipeline delete --delete-secret --name module1
-copilot app delete module2
+copilot pipeline delete --delete-secret --name cloudday
+copilot svc delete svc-api-markdown
 copilot env delete production
 copilot env delete staging
+copilot app delete cloudday
 ----
 echo "# cloudday-container" >> README.md
 git init

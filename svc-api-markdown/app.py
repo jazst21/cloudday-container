@@ -52,10 +52,10 @@ def save_data(markdown, html):
         logging.exception("Error on saving data into DynamoDB", exc_info=True)
         return False
 
-@app.route('/home', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home():
     data = {"status": "ok"}
-    return "changes made on github to ecs", 200
+    return "Hello flask from aws ecs", 200
 
 
 @app.route('/health', methods=['GET'])
