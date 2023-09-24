@@ -1,11 +1,11 @@
 copilot init --app cloudday --dockerfile svc-api-markdown/Dockerfile --name svc-api-markdown --type  "Load Balanced Web Service"
 copilot env init --name staging --default-config --profile default
-copilot env deploy --name staging
 copilot storage init -t DynamoDB -n markdown-table --partition-key ID:S --no-lsi --no-sort -w svc-api-markdown
+copilot env deploy --name staging
 copilot svc deploy --name svc-api-markdown --env staging
 copilot svc show --name svc-api-markdown
+curl -X POST http://cloud-Publi-1UPGAOLZG45YU-2020411806.ap-southeast-1.elb.amazonaws.com/api/markdown/process -d '{"text":"# Hello world from AWS Copilot!"}' --header "Content-type: application/json"
 -----
-#copilot pipeline init --name module2 --url https://github.com/jazst21/cloudday-container.git --git-branch main --environments staging,production --pipeline-type Workloads
 copilot pipeline init --name cloudday --url https://github.com/jazst21/cloudday-container.git --git-branch main --environments staging --pipeline-type Workloads
 git add copilot/
 git commit -m "Add copilot files"
